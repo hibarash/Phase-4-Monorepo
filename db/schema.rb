@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_23_203318) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_24_143015) do
   create_table "leagues", force: :cascade do |t|
     t.string "sport_name"
     t.datetime "created_at", null: false
@@ -26,6 +26,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_23_203318) do
     t.index ["user_id"], name: "index_signups_on_user_id"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.string "name"
+    t.integer "league_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["league_id"], name: "index_teams_on_league_id"
+  end
+
+  create_table "user_teams", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_user_teams_on_team_id"
+    t.index ["user_id"], name: "index_user_teams_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -37,4 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_23_203318) do
 
   add_foreign_key "signups", "leagues"
   add_foreign_key "signups", "users"
+  add_foreign_key "teams", "leagues"
+  add_foreign_key "user_teams", "teams"
+  add_foreign_key "user_teams", "users"
 end

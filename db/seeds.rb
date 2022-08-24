@@ -18,6 +18,8 @@ require 'faker'
 #Faker::Address.street_address
 
 Signup.destroy_all
+UserTeam.destroy_all
+Team.destroy_all
 League.destroy_all
 User.destroy_all
 
@@ -34,10 +36,16 @@ l6 = League.create(sport_name: "Bowling")
 
 
 puts "Creating users..."
-5.times{User.create(name: Faker::Name.name, phone:Faker::PhoneNumber.cell_phone, email:Faker::Internet.email , location:Faker::Address.street_address)}
+10.times{User.create(name: Faker::Name.name, phone:Faker::PhoneNumber.cell_phone, email:Faker::Internet.email , location:Faker::Address.street_address)}
 
 puts "Creating Signups..."
 10.times{Signup.create(league_id: rand(1..5), user_id: rand(1..5)) }
+
+puts "Creating Teams"
+10.times{Team.create(name: Faker::Team.name ,league_id: rand(1..10))}
+
+puts "creating user_teams"
+10.times{UserTeam.create(user_id: rand(1..10), team_id: rand(1..10))}
 
 
 puts "✅ Done seeding!"
