@@ -33,10 +33,10 @@ l4 = League.create(sport_name: "Baseballl")
 l5 = League.create(sport_name: "Basketball")
 l6 = League.create(sport_name: "Bowling")
 
-
+# Faker::Internet.password(min_length: 10, max_length: 20, mix_case: true, special_characters: true) #=> "*%NkOnJsH4"
 
 puts "Creating users..."
-10.times{User.create(name: Faker::Name.name, phone:Faker::PhoneNumber.cell_phone, email:Faker::Internet.email , location:Faker::Address.street_address)}
+10.times{User.create(name: Faker::Name.name, password: Faker::Internet.password(min_length: 10, max_length: 20, mix_case: true, special_characters: true), phone:Faker::PhoneNumber.cell_phone, email:Faker::Internet.email , location:Faker::Address.street_address)}
 
 puts "Creating Signups..."
 10.times{Signup.create(league_id: rand(1..5), user_id: rand(1..5)) }

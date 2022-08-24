@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+.header {
+  padding-top: .5em;
+  padding-bottom: .5em;
+  border: 1px solid #a2a2a2;
+  background: rgb(11,41,110);
+  background: linear-gradient(0deg, rgba(11,41,110,0.7987570028011204) 0%, rgba(6,109,184,0.6979166666666667) 65%, rgba(89,120,195,1) 100%);
+  -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+
+@media (min-width: 769px) {
+.header,
+.main-nav {
+  display: flex;
+}
+.header {
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1900px;
+}
+}
+
+
+
+@media (min-width: 1025px) {
+.header {
+  flex-direction: row;
+  justify-content: space-between;
+}
+}

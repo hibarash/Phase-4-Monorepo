@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
     def index
         render json: User.all
 
@@ -50,5 +49,4 @@ class UsersController < ApplicationController
         )
         
     end
-
 end

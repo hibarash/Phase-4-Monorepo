@@ -1,5 +1,4 @@
 class TeamsController < ApplicationController
-
     def index
         teams = Team.find_by(id: params[:id])
         if teams
@@ -35,6 +34,3 @@ class TeamsController < ApplicationController
         )
     end
 end
-
-    
-

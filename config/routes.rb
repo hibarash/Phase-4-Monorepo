@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :user_teams, only: [:show]
   resources :teams, only: [:show, :index, :create]
   resources :signups, only: [:index, :show, :create, :destroy]

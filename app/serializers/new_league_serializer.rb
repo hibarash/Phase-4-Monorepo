@@ -1,6 +1,7 @@
 class NewLeagueSerializer < ActiveModel::Serializer
 
-  attributes :id, 
-
-
-end
+    attributes :id, 
+  
+  
+  end
+  
