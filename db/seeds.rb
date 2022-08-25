@@ -1,4 +1,5 @@
 require 'faker'
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -29,7 +30,7 @@ puts "Creating Leagues..."
 l1 = League.create(sport_name: "Volleyball")
 l2 = League.create(sport_name: "Football")
 l3 = League.create(sport_name: "Soccer")
-l4 = League.create(sport_name: "Baseballl")
+l4 = League.create(sport_name: "Baseball")
 l5 = League.create(sport_name: "Basketball")
 l6 = League.create(sport_name: "Bowling")
 
@@ -41,8 +42,8 @@ puts "Creating users..."
 puts "Creating Signups..."
 10.times{Signup.create(league_id: rand(1..5), user_id: rand(1..5)) }
 
-puts "Creating Teams"
-10.times{Team.create(name: Faker::Team.name ,league_id: rand(1..10))}
+puts "Creating Teams"            
+50.times{Team.create(name: Faker::Team.name ,league_id: rand(1..6))}
 
 puts "creating user_teams"
 10.times{UserTeam.create(user_id: rand(1..10), team_id: rand(1..10))}

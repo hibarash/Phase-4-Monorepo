@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
     def create
         new_user = User.new(new_user_params)
-        if new new_user.save
+        if new_user.save
             render json: new_user
         else  
             render json: {"errors": new_user.errors.full_messages}, status: :unprocessable_entity
@@ -28,13 +28,13 @@ class UsersController < ApplicationController
         user_to_delete = User.find_by(id: params[:id])
         
         if user_to_delete 
-            user_to_delete.signup.destroy_all
+            user_to_delete.signups.destroy_all
             user_to_delete.destroy
 
             head :no_content
 
         else    
-            render json: ("error": "User does not exist"), status: :not_found
+            render json: {"error": "User does not exist"}, status: :not_found
 
         end
     end
@@ -43,6 +43,7 @@ class UsersController < ApplicationController
     def new_user_params
         params.require(:user).permit(
             :name,
+            :password,
             :email,
             :phone,
             :location

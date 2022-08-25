@@ -1,11 +1,6 @@
 class TeamsController < ApplicationController
     def index
-        teams = Team.find_by(id: params[:id])
-        if teams
-            render json: teams
-        else
-            render json: {"errors": "Teams not found", status: :not_found}
-        end
+        render json: Team.all
     end
     
     def show
@@ -15,6 +10,8 @@ class TeamsController < ApplicationController
             render json: teams
         else
             render json: {"error": "Team Not Found", status: :not_found}
+        end
+    end
 
     def create
         new_team = Team.new(create_team_params)
@@ -28,8 +25,8 @@ class TeamsController < ApplicationController
 
     private
     def create_team_params
-        params.require(:user).permit(
-            :name
+        params.require(:team).permit(
+            :name,
             :league_id
         )
     end

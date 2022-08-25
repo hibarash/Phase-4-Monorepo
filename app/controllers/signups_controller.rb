@@ -31,8 +31,8 @@ class SignupsController < ApplicationController
 
     private
     def signup_create_params
-        params.require(:user).permit(
-            :user_id
+        params.require(:signup).permit(
+            :user_id,
             :league_id
         )
     end

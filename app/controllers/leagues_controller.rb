@@ -29,7 +29,7 @@ class LeaguesController < ApplicationController
             head :no_content
 
         else    
-            render json: ("error": "League does not exist"), status: :not_found
+            render json: {"error": "League does not exist"}, status: :not_found
 
         end
     end
@@ -40,5 +40,5 @@ class LeaguesController < ApplicationController
     #         :sport_name
     #         ## may have to add more
     #     )
-    end
+
 end
