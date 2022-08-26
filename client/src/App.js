@@ -1,13 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {  Route, Switch } from 'react-router-dom';
 import {useEffect, useState} from 'react'
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import UserForm from './components/userForm';
 import League from './components/Leagues';
 import NewUser from './components/newUserForm';
-import Team from './components/Team';
+import Volleyball from './components/Volleyball';
+import Football from './components/Football';
+import Soccer from './components/Soccer';
+import Basketball from './components/Basketball';
+import Baseball from './components/Baseball';
+import Bowling from './components/Bowling';
+
 import User from './components/User';
 // import LeaguesContainer from './containers/LeaguesContainer';
 
@@ -142,27 +148,27 @@ function App() {
   <Switch>
   
   <Route exact path="/league/1"> 
-  <section className="layout"><Team teamsToMap={teamData}/></section> 
+  <section className="layout"><Volleyball teamsToMap={teamData}/></section> 
   </Route>
 
   <Route exact path="/league/2">
-    <section> <League/> </section>
+    <section className="layout"><Football teamsToMap={teamData} /> </section>
   </Route>
 
   <Route exact path="/league/3">
-    <section> <League/> </section>
+    <section className="layout"><Soccer teamsToMap={teamData}/> </section>
   </Route>
 
   <Route exact path="/league/4">
-    <section> <League/> </section>
+    <section className="layout"> <Basketball teamsToMap={teamData}/> </section>
   </Route>
 
   <Route exact path="/league/5">
-    <section> <League/> </section>
+    <section className="layout"> <Baseball teamsToMap={teamData}/> </section>
   </Route>
 
   <Route exact path="/league/6">
-    <section> <League/> </section>
+    <section className="layout"><Bowling teamsToMap={teamData}/> </section>
   </Route>
 
   <Route exact path="/teams">

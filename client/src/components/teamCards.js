@@ -1,15 +1,15 @@
 
 
 
-function TeamCards(props) {
+function teamCard({teamProp}) {
 
-    console.log("Props please", props.leagueProp.id)
+    
 
 
     return( 
         
         <div>
-            <h1>{props.teamProp.name}</h1>    
+            <h1>{teamProp.name}</h1>    
             <button>Select League!</button>
         </div>
 
@@ -17,4 +17,4 @@ function TeamCards(props) {
     )
 }
 
-export default TeamCards
+export default teamCard

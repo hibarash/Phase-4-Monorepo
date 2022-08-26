@@ -1,18 +1,24 @@
-function Volleyball(props) {
 
-    console.log("Props please", props.teamProp.league.id)
+import VolleyballCard from "./VolleyballCard";
+//import {Link} from "react-router-dom";
 
-    // if props.teamProp.league.id === 1
 
-    return( 
-        
-        <div>
-            <h1>{props.teamProp.name}</h1>   
-              {/* Image here */}
-        </div>
-
+function Volleyball({teamsToMap}){
     
-    )
+const leagueTeamsSplit = teamsToMap.filter(volleyball => volleyball.league.sport_name === 'Volleyball')
+    return(<>
+
+    {leagueTeamsSplit.map(
+    (eachTeam)=>{
+        return(<VolleyballCard
+        key={eachTeam}
+        teamProp={eachTeam}/>)
+        }
+        )}
+        </>
+        )
 }
 
-export default Volleyball
+
+
+export default Volleyball;

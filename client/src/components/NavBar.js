@@ -7,11 +7,11 @@ function NavBar(){
 
     return(<>
 
-        <nav role="navigation" class="primary-navigation">
+        <nav role="navigation" className="primary-navigation">
             <ul>
                 <li> <NavLink to="/"> <a href="#"> Home </a> </NavLink> </li>
                 <li>  <a href="#"> Join a League </a>
-            <ul class="dropdown">
+            <ul className="dropdown">
                 <li> <NavLink to="/league/1"> <a href="#"> Volleyball </a> </NavLink> </li>
                 <li> <NavLink to="/league/2"> <a href="#">Football</a> </NavLink> </li>
                 <li> <NavLink to="/league/3"> <a href="#"> Soccer </a> </NavLink> </li>
