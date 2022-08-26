@@ -24,6 +24,13 @@ class UsersController < ApplicationController
 
     end
 
+    def update
+        user = User.find_by(params[:id])
+        user.update!(user_update_params)
+        render json: user, status: :ok
+
+    end
+
     def destroy
         user_to_delete = User.find_by(id: params[:id])
         
@@ -49,5 +56,8 @@ class UsersController < ApplicationController
             :location
         )
         
+    end
+    def user_update_params
+        params.require(:name, :email, :phone, :location)
     end
 end

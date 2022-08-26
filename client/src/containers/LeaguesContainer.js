@@ -9,7 +9,7 @@ useEffect(() => {
     fetch("http://http://localhost:3001/league")
     .then((res) => res.json())
     .then((fetchedData) => {
-    console.log("leagues:", fetchedData);
+    // console.log("leagues:", fetchedData);
     setLeagueData(fetchedData);
     })
 }, []);

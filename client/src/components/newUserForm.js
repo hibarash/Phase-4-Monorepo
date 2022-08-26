@@ -15,7 +15,7 @@ function NewUser (props){
     
     function functionToAddNewUser(newUser) {
 
-        fetch("http://localhost:3001/users", {
+        fetch("/users", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newUser),
@@ -34,11 +34,11 @@ function NewUser (props){
             email: userEmail,
             location: userLocation,
         }
-        console.log("sEvent Value", synthEvent.target.value)
+        
         
         functionToAddNewUser(newUser)
 
-        alert (confirmSubmit)
+        // alert (confirmSubmit)
     }}>
             
             

@@ -7,6 +7,8 @@ import Home from './components/Home';
 import UserForm from './components/userForm';
 import League from './components/Leagues';
 import NewUser from './components/newUserForm';
+import Team from './components/Team';
+import User from './components/User';
 // import LeaguesContainer from './containers/LeaguesContainer';
 
 
@@ -18,31 +20,29 @@ function App() {
   const [userData, setUserData] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3001/users")
-      .then((res) => res.json())
-      .then((fetchedData) => {
-        console.log("users:", fetchedData)
-        setUserData(fetchedData);
-      });
+    fetch("/users")
+      .then(res => res.json())
+      .then((data) => setUserData(data))
+       // console.log(data)
     }, []);
 
     function addNewUser(newUser){
       setUserData([newUser, ...userData]);
-      fetch("http://localhost:3001/users", {
+      fetch("/users", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(newUser)
       });
     }
-    function deleteUser(id){
-      console.log(id);
-      setUserData((previousUser) =>  {
-        const filteredUserById = previousUser.filter(
-          (user) => user.id !== id
-        );
-        return filteredUserById
-      })
-    }
+    // function deleteUser(id){
+    //   console.log(id);
+    //   setUserData((previousUser) =>  {
+    //     const filteredUserById = previousUser.filter(
+    //       (user) => user.id !== id
+    //     );
+    //     return filteredUserById
+    //   })
+    // }
 
     // useEffect(() => {
     //   fetch("http://localhost:3001/league")
@@ -63,69 +63,86 @@ function App() {
     //   })
     // }
 
-    useEffect(() => {
-      fetch("http://localhost:3001/signups")
-      .then((res) => res.json())
-      .then((fetchedData) => {
-        console.log("signup:", fetchedData);
-        setSignupData(fetchedData);
-      });
-    }, []);
-    function addNewSignup(newSignup){
-      setSignupData([newSignup, ...signupData]);
+    // useEffect(() => {
+    //   fetch("http://localhost:3000/signups")
+    //   .then((res) => res.json())
+    //   .then((fetchedData) => {
+    //     console.log("signup:", fetchedData);
+    //     setSignupData(fetchedData);
+    //   });
+    // }, []);
+    // function addNewSignup(newSignup){
+    //   setSignupData([newSignup, ...signupData]);
 
-      fetch("http://localhost:3001/signups", {
-        method: "POST",
-        headers: {"Content-Type": "application/json" },
-        body: JSON.stringify(newSignup),
-      });
-    }
-    function deleteSignup(id) {
-      console.log(id);
-      setSignupData((previousSignup) => {
-        const filteredSignupById = previousSignup.filter(
-          (signup) => signup.id !== id
-        );
-        return filteredSignupById
-      });
-    }
-    useEffect(() => {
-      fetch("http://localhost:3001/teams")
-      .then((res) => res.json())
-      .then((fetchedData) => {
-        console.log("team:", fetchedData);
-        setTeamData(fetchedData);
-      });
-    }, []);
+    //   fetch("http://localhost:3000/signups", {
+    //     method: "POST",
+    //     headers: {"Content-Type": "application/json" },
+    //     body: JSON.stringify(newSignup),
+    //   });
+    // }
+    // function deleteSignup(id) {
+    //   console.log(id);
+    //   setSignupData((previousSignup) => {
+    //     const filteredSignupById = previousSignup.filter(
+    //       (signup) => signup.id !== id
+    //     );
+    //     return filteredSignupById
+    //   });
+    // }
+  //   useEffect(() => {
+  //     fetch("http://localhost:3000/teams")
+  //     .then(res => res.json())
+  //     .then((fetchedData) => {
+  //       console.log("team:", fetchedData);
+  //       setTeamData(fetchedData);
+  //     });
+  //   }, []);
+    
+  // function addNewTeam(newTeam) {
+  //   setTeamData([newTeam, ...teamData]);
 
+  //   fetch("http://localhost:3000/teams", {
+  //     method: "POST",
+  //     headers: {"Content-Type":"application/json"},
+  //     body: JSON.stringify(newTeam),
+  //   });
+  // }
+  useEffect(() => {
+    fetch("/teams")
+    .then(res => res.json())
+    .then(data => setTeamData(data))
+  },[])
   function addNewTeam(newTeam) {
     setTeamData([newTeam, ...teamData]);
-
-    fetch("http://localhost:3001/teams", {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify(newTeam),
-    });
+  fetch("/teams",{
+    method:"POST",
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(newTeam)
+})
   }
-  useEffect(() => {
-    fetch("http://localhost:3001/user_teams")
-    .then((res) => res.json())
-    .then((fetchedData) => {
-      console.log("user_team:", fetchedData);
-      setUserTeamData(fetchedData);
-    });
-  }, []);
+
+  
+  
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/user_teams")
+  //   .then((res) => res.json())
+  //   .then((fetchedData) => {
+  //     console.log("user_team:", fetchedData);
+  //     setUserTeamData(fetchedData);
+  //   });
+  // }, []);
 
   
 
   return (<>
-  <NavBar functionToAddNewUser={addNewUser}
-    functiontoAddNewSignup={addNewSignup}/>
+  <NavBar //functionToAddNewUser={addNewUser}
+    //functiontoAddNewSignup={addNewSignup}
+    />
 
   <Switch>
   
   <Route exact path="/league/1"> 
-    <section><League teamsToMap={leagueData}/></section> 
+  <section className="layout"><Team teamsToMap={teamData}/></section> 
   </Route>
 
   <Route exact path="/league/2">
@@ -149,7 +166,7 @@ function App() {
   </Route>
 
   <Route exact path="/teams">
-    <section> <League/> </section>
+    <section> <User/> </section>
   </Route>
 
   <Route exact path="/create">

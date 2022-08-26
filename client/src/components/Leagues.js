@@ -1,6 +1,6 @@
 function League(props){
 
-    console.log("props from League", props)
+   // console.log("props from League", props)
 
 // for each to render teams??
 // put a logo for each time
