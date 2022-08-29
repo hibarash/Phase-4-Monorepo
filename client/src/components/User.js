@@ -103,7 +103,7 @@ function User(userAccount){
 
         <button type='submit'> Edit Account </button>
 
-        <button type='button'> Delete Account </button>
+        <button type='button' onClick={handleDelete()}> Delete Account </button>
 
 </form>
     )    

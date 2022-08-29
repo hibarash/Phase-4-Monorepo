@@ -1,13 +1,12 @@
 import React, {useState} from 'react'
-import Auth from './Auth'
 import { useHistory } from "react-router-dom";
 
 
-function Login({setUser,setIsAuthenticated}) {
-    const [username, setUsername] = useState('')
+function Login() {
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const [error, setError] = useState([])
+    const [errors, setErrors] = useState([])
     let history = useHistory();
 
     function onSubmit(e){
@@ -22,42 +21,47 @@ function Login({setUser,setIsAuthenticated}) {
             headers:{'Content-Type': 'application/json'},
             body:JSON.stringify(user)
         })
-        .then(res => {
-        if(res.ok){
-            res.json()
-            .then(user=>{
-            setUser(user)
-            setIsAuthenticated(true)
-            })
-            
-        } else {
-            res.json()
-            .then(json => setError(json.error))
-        }
+        .then(res => res.json())
+        .then(json => {
+            console.log(json)
+            if(json.errors) setErrors(json.errors)
         })
     }
+
+
+        //     res.json()
+        //     .then(user=>{
+        //     setUser(user)
+        //     setIsAuthenticated(true)
+        //     })
+            
+        // } else {
+        //     res.json()
+        //     .then(json => setErrors(json.error))
+        // }
+        // })
+    
     return (
 
         <> 
-        {/* <h1>Flatiron Theater Company</h1>
-        <h1>Login</h1>
         <form onSubmit={onSubmit}>
         <label>
-        Username
-
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          Username
+   
+          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label>
-        Password
+         Password
     
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
-
+       
         <input type="submit" value="Login!" />
-    </form>
-    {error?<div>{error}</div>:null}
-    <Auth /> */}
+      </form>
+      {errors?errors.map(e => <div>{e}</div>):null}
         </>
+    
+        
     )
 }
 

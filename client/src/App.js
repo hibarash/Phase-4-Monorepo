@@ -25,6 +25,8 @@ function App() {
   const [teamData, setTeamData] = useState([])
   const [userTeamData, setUserTeamData] = useState([])
   const [userData, setUserData] = useState([])
+  const [userDataForLogin, setUserDataForLogin] = useState([])
+  
 
   useEffect(() => {
     fetch("/users")
@@ -129,17 +131,28 @@ function App() {
   }
 
   
-  
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/user_teams")
-  //   .then((res) => res.json())
-  //   .then((fetchedData) => {
-  //     console.log("user_team:", fetchedData);
-  //     setUserTeamData(fetchedData);
-  //   });
-  // }, []);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    fetch("/authorized_user")
+    .then((res) => {
+      if(res.ok) {
+        res.json()
+        .then((user) => {
+          setIsAuthenticated(true);
+          setUser(user);
+        })
+        .then(()=> {
+          fetch('/users')
+          .then(res => res.json())
+          .then(userDataForLogin => {
+            console.log(userDataForLogin)
+            setUserDataForLogin(userDataForLogin)
+          });
+        })}})})
   
+        // if (!isAuthenticated) return <Login error={'please login'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />;
 
   return (<>
   <NavBar //functionToAddNewUser={addNewUser}
