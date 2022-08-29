@@ -25,17 +25,20 @@ class UsersController < ApplicationController
     end
 
     def update
-        user = User.find_by(params[:id])
-        user.update!(user_update_params)
-        render json: user, status: :ok
+        userToUpdate = User.find_by(id:params[:id])
+
+        if userToUpdate.update(user_update_params)
+            render json: userToUpdate, status: :accepted
+
+        else
+            render json: {error: "user not found"}, status: :not_found
 
     end
 
     def destroy
-        user_to_delete = User.find_by(id: params[:id])
+        user_to_delete = User.find_by(params[:id])
         
         if user_to_delete 
-            user_to_delete.signups.destroy_all
             user_to_delete.destroy
 
             head :no_content
@@ -46,6 +49,8 @@ class UsersController < ApplicationController
         end
     end
 
+    
+
     private
     def new_user_params
         params.require(:user).permit(
@@ -55,9 +60,17 @@ class UsersController < ApplicationController
             :phone,
             :location
         )
-        
     end
+
     def user_update_params
-        params.require(:name, :email, :phone, :location)
+        params.require(:user).permit(
+            :name, 
+            :email, 
+            :phone,
+            :location
+        )
     end
+
+end
+
 end

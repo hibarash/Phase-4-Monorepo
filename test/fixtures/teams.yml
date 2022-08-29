@@ -2,8 +2,10 @@
 
 one:
   name: MyString
-  league: one
+  image_url: MyString
+  league_id: 1
 
 two:
   name: MyString
-  league: two
+  image_url: MyString
+  league_id: 1

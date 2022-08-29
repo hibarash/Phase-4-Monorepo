@@ -13,6 +13,7 @@ import Soccer from './components/Soccer';
 import Basketball from './components/Basketball';
 import Baseball from './components/Baseball';
 import Bowling from './components/Bowling';
+import Login from './components/Login';
 
 import User from './components/User';
 // import LeaguesContainer from './containers/LeaguesContainer';
@@ -171,14 +172,18 @@ function App() {
     <section className="layout"><Bowling teamsToMap={teamData}/> </section>
   </Route>
 
-  <Route exact path="/teams">
+  <Route exact path="/users">
     <section> <User/> </section>
   </Route>
 
   <Route exact path="/create">
     <section> <NewUser sendUserData={userData}/> </section>
   </Route>
-  
+
+  <Route exact path="/login">
+    <section> <Login sendLogin={userData}/></section>
+  </Route>
+
   <Route exact path="/">
   <Home/>
   </Route>

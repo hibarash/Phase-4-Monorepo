@@ -7,9 +7,10 @@ function Soccer (props) {
     return( 
         
         <div>
-            <h1>{props.teamProp.name}</h1>  
+            <h1>{props.teamProp.name} Soccer</h1> 
+            <img src={props.teamProp.image_url}/> 
             <button>Select League!</button>
-              {/* Image here */}
+
         </div>
 
     

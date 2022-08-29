@@ -20,8 +20,9 @@ function NavBar(){
                 <li> <NavLink to="/league/6"> <a href="#">Bowling</a> </NavLink> </li>
                 </ul>
             </li>
-                <li> <NavLink to="/teams"> <a href="#"> Your Account </a> </NavLink> </li>
+                <li> <NavLink to="/users"> <a href="#"> Your Account </a> </NavLink> </li>
                 <li> <NavLink to="/create"> <a href="#">Create an Account</a> </NavLink> </li>
+                <li> <NavLink to="/login"> <a href="#">Already Have an Account?</a> </NavLink> </li>
             </ul>
         </nav>
     

@@ -24,7 +24,7 @@ function NewUser (props){
 
         
     return(
-        <form onSubmit={ (synthEvent) =>{
+        <form className='form' onSubmit={ (synthEvent) =>{
             synthEvent.preventDefault()
         
         let newUser={
@@ -38,20 +38,42 @@ function NewUser (props){
         
         functionToAddNewUser(newUser)
 
-        // alert (confirmSubmit)
+        alert (confirmSubmit)
     }}>
             
             
-                <h4> New User </h4>
-                <input type="text" placeholder='your name' value={userName} onChange={(synthEvent)=>{setUserName(synthEvent.target.value)}}/>
-                <input type="text" placeholder='password' value={userPassword} onChange={(synthEvent)=>setUserPassword(synthEvent.target.value)}/>
-                <input type="text" placeholder='phone' value={userPhone} onChange={(synthEvent)=>setUserPhone(synthEvent.target.value)}/>
-                <input type="text" placeholder='email' value={userEmail} onChange={(synthEvent)=>setUserEmail(synthEvent.target.value)}/>
-                <input type="text" placeholder='location' value={userLocation} onChange={(synthEvent)=>setUserLocation(synthEvent.target.value)}/>
+        <h4> Sign up for an account! </h4>
 
-                <button type="submit"> Add User </button>
-                
-            </form>
+        <p className='field required'>
+        <label className='label'>Full Name</label>
+        <input className='text-input' type="text" placeholder='Full Name' value={userName} onChange={(synthEvent)=>{setUserName(synthEvent.target.value)}}/>
+        </p>
+
+        <p className='field required half'>
+            <label className='label'>Email Address</label>
+        <input className='text-input' type="text" placeholder='Email' value={userEmail} onChange={(synthEvent)=>setUserEmail(synthEvent.target.value)}/>
+        </p>
+
+
+        <p className='field required half'>
+        <label className='label'>Password</label>
+        <input className='text-input' type="password" placeholder='Password' value={userPassword} onChange={(synthEvent)=>setUserPassword(synthEvent.target.value)}/>
+        </p>
+
+        <p className='field required half'>
+            <label className='label'>Phone</label>
+        <input className='text-input' type="text" placeholder='Phone' value={userPhone} onChange={(synthEvent)=>setUserPhone(synthEvent.target.value)}/>
+        </p>
+
+
+        <p className='field required half'>
+            <label className='label'>State</label>
+        <input className='text-input' type="text" placeholder='Location' value={userLocation} onChange={(synthEvent)=>setUserLocation(synthEvent.target.value)}/>
+
+        </p>
+        <button className='button' type="submit"> Add User </button>
+
+        </form>
 
     )
         }
