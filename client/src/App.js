@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {  Route, Switch } from 'react-router-dom';
+import {  Route, Switch, withRouter } from 'react-router-dom';
 import {useEffect, useState} from 'react'
 import NavBar from './components/NavBar';
 import Home from './components/Home';
@@ -19,13 +19,14 @@ import User from './components/User';
 // import LeaguesContainer from './containers/LeaguesContainer';
 
 
-function App() {
+function App({history}) {
   const [leagueData, setLeagueData] = useState([])
   const [signupData, setSignupData] = useState([])
   const [teamData, setTeamData] = useState([])
   const [userTeamData, setUserTeamData] = useState([])
   const [userData, setUserData] = useState([])
   const [userDataForLogin, setUserDataForLogin] = useState([])
+  const [currentUser, setCurrentUser] = useState("")
   
 
   useEffect(() => {
@@ -130,7 +131,8 @@ function App() {
 })
   }
 
-  
+  const updateUser = (user) => setCurrentUser(user)
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
@@ -143,16 +145,13 @@ function App() {
           setIsAuthenticated(true);
           setUser(user);
         })
-        .then(()=> {
-          fetch('/users')
-          .then(res => res.json())
-          .then(userDataForLogin => {
-            console.log(userDataForLogin)
-            setUserDataForLogin(userDataForLogin)
-          });
-        })}})})
+        .then(<Route exact path='/'/>);
+      }
+    }
+  )
+},[])
   
-        // if (!isAuthenticated) return <Login error={'please login'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />;
+        if (!isAuthenticated) return <Login error={'please login'} setIsAuthenticated={setIsAuthenticated} setUser={setUser} />;
 
   return (<>
   <NavBar //functionToAddNewUser={addNewUser}
@@ -186,7 +185,7 @@ function App() {
   </Route>
 
   <Route exact path="/users">
-    <section> <User/> </section>
+    <section> <User updateUser={updateUser}/> </section>
   </Route>
 
   <Route exact path="/create">
@@ -194,7 +193,7 @@ function App() {
   </Route>
 
   <Route exact path="/login">
-    <section> <Login sendLogin={userData}/></section>
+    <section> <Login sendLogin={userData} updateUser={updateUser}/></section>
   </Route>
 
   <Route exact path="/">

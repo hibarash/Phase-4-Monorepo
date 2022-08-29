@@ -119,6 +119,7 @@ position: inherit;
 /* Start of ForEach Card css */
 
 .layout {
+  margin-left: 220px;
   margin-top: 150px;
   width: 1920px;
   height: 1080px;
@@ -128,7 +129,9 @@ position: inherit;
   gap: 40px;
   }
 
-  
+  .layout h1 {
+    color: #000000
+  }
   
   .layout div {
   -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
@@ -140,12 +143,14 @@ position: inherit;
     font-weight: bold;
     text-align: center;
     background-color: #ffffff;
+    font-family: "Lucida Console", "Courier New", monospace;
     }
 
   .layout img {
-    position: relative;
+    position: inherit;
+    margin-top: 20px;
     height: 250px;
-    width: 200px;
+    width: 280px;
     
   }
 
@@ -153,13 +158,13 @@ position: inherit;
     -webkit-border-radius: 30;
     -moz-border-radius: 30;
     border-radius: 30px;
-    font-family: Arial;
+    font-family: "Lucida Console", "Courier New", monospace;
     color: #ffffff;
     font-size: 20px;
     background: #131ccf;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
-    margin-bottom: 10px;
+    margin-top: 70px;
     
   }
   
@@ -295,6 +300,8 @@ position: inherit;
     width: auto;
     margin-left: auto;
     font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 15px;
     padding-left: 2em;
     padding-right: 2em; }
     .form .button:hover, .form .button:focus, .form .button:active {
@@ -342,7 +349,7 @@ position: inherit;
     .form .checkbox, .form .option {
       float: left;
       margin: 1px; }
-      .form h4 {
+      .form h4, h1 {
         color: #ffffff;
         padding-left: 10px;
       }

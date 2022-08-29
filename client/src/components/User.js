@@ -66,7 +66,7 @@ function User(userAccount){
     }
 
     return(
-    <form onSubmit={(synthEvent) => {
+    <form className='form' onSubmit={(synthEvent) => {
         synthEvent.preventDefault() 
 
         let updatedInfo={
@@ -79,31 +79,31 @@ function User(userAccount){
     }}>
 
 
-    <h1> Your Account Deatils</h1>
+    <h1> Your Account Deatils!</h1>
     
-    <p>
-        <label>Name</label>
-        <input type="text" placeholder="name" value={nameUpdate} onChange={(synthEvent)=>{setNameUpdate(synthEvent.target.value)}} />
+    <p className='field required'>
+        <label className='label'>Name</label>
+        <input className='text-input' type="text" placeholder="name" value={nameUpdate} onChange={(synthEvent)=>{setNameUpdate(synthEvent.target.value)}} />
     </p>
     
-    <p>
-        <label>Email</label>
-        <input type="text" placeholder="email" value={emailUpdate} onChange={(synthEvent)=>{setEmailUpdate(synthEvent.target.value)}} />
+    <p className='field required'>
+        <label className='label'>Email</label>
+        <input className='text-input' type="text" placeholder="email" value={emailUpdate} onChange={(synthEvent)=>{setEmailUpdate(synthEvent.target.value)}} />
     </p>
 
-    <p>
-        <label>Phone</label>
-        <input type="text" placeholder="phone" value={phoneUpdate} onChange={(synthEvent)=>{setPhoneUpdate(synthEvent.target.value)}} />
+    <p className='field required half'>
+        <label className='label'>Phone</label>
+        <input className='text-input' type="text" placeholder="phone" value={phoneUpdate} onChange={(synthEvent)=>{setPhoneUpdate(synthEvent.target.value)}} />
     </p>
 
-    <p>
-        <label>Location</label>  
-        <input type="text" placeholder="location" value={locationUpdate} onChange={(synthEvent)=>{setLocationUpdate(synthEvent.target.value)}} />
+    <p className='field required half'>
+        <label className='label'>Location</label>  
+        <input className='text-input' type="text" placeholder="location" value={locationUpdate} onChange={(synthEvent)=>{setLocationUpdate(synthEvent.target.value)}} />
     </p>    
 
-        <button type='submit'> Edit Account </button>
+        <button className='button' type='submit'> Edit Account </button>
 
-        <button type='button' onClick={handleDelete()}> Delete Account </button>
+        <button className='button' type='button' onClick={handleDelete()}> Delete Account </button>
 
 </form>
     )    
