@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-        skip_before_action :authroized_user, only: [:login]
+        skip_before_action :authorized_user, only: [:login]
 
     def login
 

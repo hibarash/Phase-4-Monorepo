@@ -2,10 +2,13 @@ import React, {useState} from 'react'
 import { useHistory } from "react-router-dom";
 
 
-function Login() {
+function Login(updateUser) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+const [formData, setFormData] =useState({
+    email:'',
+    password:''
+})
     const [errors, setErrors] = useState([])
     let history = useHistory();
 
@@ -21,13 +24,23 @@ function Login() {
             headers:{'Content-Type': 'application/json'},
             body:JSON.stringify(user)
         })
-        .then(res => res.json())
-        .then(json => {
-            console.log(json)
-            if(json.errors) setErrors(json.errors)
-        })
+        .then(res => {
+            if(res.ok){
+                res.json().then(user => {
+                    updateUser(user)
+                    history.push(`/users`)
+                })
+            }
+                       
+        else {res.json().then(json => setErrors(json.errors))
+        
     }
-
+    })}
+    
+    // const handleChange = (e) => {
+    //     const { name, value } = e.target
+    //     setFormData({ ...formData, [name]: value })
+    //   }
 
         //     res.json()
         //     .then(user=>{
@@ -44,19 +57,17 @@ function Login() {
     return (
 
         <> 
-        <form onSubmit={onSubmit}>
-        <label>
-          Username
-   
-          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <label>
-         Password
-    
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
+        
+        <form className='form' onSubmit={onSubmit}>
+        <h1> Login below!</h1>
+        <label className='label'>Email Address</label>
+        <input className='text-input' placeholder='Email Address' type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+        
+        <label className='label'>Password</label>    
+        <input className='text-input' placeholder='Password' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        
        
-        <input type="submit" value="Login!" />
+        <button className='button' type="submit">Log In </button>
       </form>
       {errors?errors.map(e => <div>{e}</div>):null}
         </>
